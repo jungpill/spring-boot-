@@ -1,29 +1,35 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Member {
 
     @Id
     private Long id;
-    private String name;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // 객체에서는 username으로 사용 db에서응 name으로 사용
+    @Column(name = "name")
+    private String username;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    private Integer age;
 
-    public Long getId() {
-        return id;
-    }
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
-    public String getName(){
-        return name;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lsatModifiedDate;
+
+    // varchar를 넘어서 더 큰 데이터를 넣고 싶은 경우 사용하는 타입 Lab
+    @Lob
+    private String description;
+
+    public Member(){
+
     }
 
 }
