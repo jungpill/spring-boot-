@@ -1,9 +1,6 @@
 package jpabook.jpashop.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Member {
@@ -13,10 +10,16 @@ public class Member {
     @Column(name = "MEMBER_ID")
     // GeneratedValue생략시 기본 Auto적용
     private Long id;
+
+    @Column(name = "USERNAME")
     private String name;
     private String city;
     private String street;
     private String zipcode;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Long getId() {
         return id;
